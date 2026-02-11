@@ -1,0 +1,30 @@
+# ----------------------------
+# Raw data (user-provided)
+# ----------------------------
+# Ignore everything in raw folders...
+data/**/raw/*
+
+# keep raw folder README
+!data/**/raw/README
+!data/**/raw/README.*
+!data/**/raw/.gitkeep
+
+# ----------------------------
+# Processed data + outputs (generated)
+# ----------------------------
+data/**/processed/**
+output/**
+plots/**
+statistics/**
+
+# ----------------------------
+# R / RStudio / OS clutter
+# ----------------------------
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+.DS_Store
+Thumbs.db
+
