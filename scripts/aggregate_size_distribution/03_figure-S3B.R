@@ -32,6 +32,7 @@ librarian::shelf(tinythemes, Cairo)
 # Directory helpers (ensure_dir)
 source(here('R', 'functions', 'paths_and_directories.R'))
 source(here('R', 'functions', 'fonts.R'))
+source(here('R', 'functions', 'plot_theme.R'))
 
 ## ----------------------------------------- ##
 #          Directory Creation ----
@@ -49,26 +50,8 @@ ensure_dir(PD)
 #             Set Plot Theme ----
 ## ----------------------------------------- ##
 
-# Global theme (publication sizes; use generic 'sans' for cross-system stability)
-fontfam <- initialize_font()
-
-theme_set(theme_ipsum_rc(base_family = fontfam) +
-            theme(text = element_text(family = fontfam),
-                  plot.title    = element_text(size = 14),
-                  plot.subtitle = element_text(size = 12),
-                  axis.title.x  = element_text(size = 10),
-                  axis.title.y  = element_text(size = 10),
-                  axis.text.x   = element_text(size = 8),
-                  axis.text.y   = element_text(size = 8),
-                  strip.text.x  = element_text(size = 8),
-                  strip.text.y  = element_text(size = 8),
-                  legend.title  = element_text(size = 8),
-                  legend.text   = element_text(size = 6, 
-                                               margin = margin(l = 0.25, unit = 'mm'),
-                                               vjust = 0.675),
-                  legend.key.size = unit(0.35, 'cm'),
-                  plot.background = element_blank(),
-                  plot.margin = margin(t = 5, r = 5, b = 5, l = 5)))
+# Set global ggplot2 theme for consistent manuscript figure styling
+set_plot_theme()
 
 ## ----------------------------------------- ##
 #                 Data Import ----
