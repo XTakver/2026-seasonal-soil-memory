@@ -83,7 +83,7 @@ df_GeoMean_stats <- df_GeoMean |>
   summarise(final_mean_diam = mean(mean_diam, na.rm = TRUE),
             sd_diam = sd(mean_diam, na.rm = TRUE),
             count = n(),
-            se_diam = sd_diam/sqrt(n()))
+            se_diam = sd_diam/sqrt(n()), .groups = 'drop')
 
 ## ----------------------------------------- ##
 #                 Export DFs ----
