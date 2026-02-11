@@ -23,7 +23,7 @@
 librarian::shelf(tidyverse, here)
 
 # Data Visualization packages
-librarian::shelf(hrbrthemes, Cairo)
+librarian::shelf(tinythemes, Cairo)
 
 ## ----------------------------------------- ##
 #             Source Functions ----
@@ -31,6 +31,7 @@ librarian::shelf(hrbrthemes, Cairo)
 
 # Directory helpers (ensure_dir)
 source(here('scripts', 'processing_functions', 'paths_and_directories.R'))
+source(here('scripts', 'processing_functions', 'fonts.R'))
 
 ## ----------------------------------------- ##
 #          Directory Creation ----
@@ -49,19 +50,22 @@ ensure_dir(PD)
 ## ----------------------------------------- ##
 
 # Global theme (publication sizes; use generic 'sans' for cross-system stability)
-theme_set(theme_ipsum(base_family = 'sans') +
-            theme(plot.title = element_text(size = 14),
+fontfam <- initialize_font()
+
+theme_set(theme_ipsum_rc(base_family = fontfam) +
+            theme(text = element_text(family = fontfam),
+                  plot.title    = element_text(size = 14),
                   plot.subtitle = element_text(size = 12),
-                  axis.title.x = element_text(size = 10),
-                  axis.title.y = element_text(size = 10),
-                  axis.text.x = element_text(size = 8),
-                  axis.text.y = element_text(size = 8),
-                  strip.text.x = element_text(size = 8),
-                  strip.text.y = element_text(size = 8),
-                  legend.title = element_text(size = 8),
-                  legend.text = element_text(size = 6,
-                                             margin = margin(l = 0.25, unit = 'mm'),
-                                             vjust = 0.675),
+                  axis.title.x  = element_text(size = 10),
+                  axis.title.y  = element_text(size = 10),
+                  axis.text.x   = element_text(size = 8),
+                  axis.text.y   = element_text(size = 8),
+                  strip.text.x  = element_text(size = 8),
+                  strip.text.y  = element_text(size = 8),
+                  legend.title  = element_text(size = 8),
+                  legend.text   = element_text(size = 6, 
+                                               margin = margin(l = 0.25, unit = 'mm'),
+                                               vjust = 0.675),
                   legend.key.size = unit(0.35, 'cm'),
                   plot.background = element_blank(),
                   plot.margin = margin(t = 5, r = 5, b = 5, l = 5)))
@@ -88,9 +92,8 @@ df_GeoMean_Sum <- read_csv(file.path(DD, 'processed_asd_GeoMean_SummaryStats.csv
 # y-axis is reversed so increasing depth plots downward.
 plt.all <- 
 ggplot(df_GeoMean_Sum, aes(x = mean_diam, y = mid_depth, color = site_id)) +
-  geom_errorbarh(aes(xmin = mean_diam - se_diam, xmax = mean_diam + se_diam, 
-                     y = mid_depth, color = site_id),
-                 height = 2.5, linewidth = 0.5, alpha = 0.5) +
+  geom_errorbar(aes(xmin = mean_diam - se_diam, xmax = mean_diam + se_diam),
+    orientation = 'y',  width = 2.5, linewidth = 0.5, alpha = 0.5) +
   geom_point(size = 1.5) +
   geom_line(orientation = 'y', linewidth = 0.75, alpha = 0.5) +
   scale_color_manual(values = c('HS1' = '#759295',
@@ -111,7 +114,6 @@ plt.all
 CairoPDF(file.path(PD, 'Fig.S3B_ASD_Depth_Profile.pdf'), width = 4.5, height = 3.5)
 print(plt.all)
 dev.off()
-
 
 
 
