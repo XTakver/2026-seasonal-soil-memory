@@ -42,6 +42,7 @@ Example:
 - **R:** tested with R 4.5.1  
 - Package versions are pinned with `renv` (see `renv.lock`). Run:
   - `renv::restore()`
+- **Figure rendering:** This repository bundles static Roboto Condensed `.ttf` files in `assets/fonts/roboto_condensed/` to ensure cross-platform, reproducible figure rendering with plot theme and CairoPDF. Fonts are registered at runtime via `initialize_font()` in `scripts/processing_functions/`. Font licensing information is included alongside the font files.  
 
 ## Outputs
 - Figures: `output/figures/`
