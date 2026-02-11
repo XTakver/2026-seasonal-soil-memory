@@ -25,7 +25,7 @@ librarian::shelf(tidyverse, here, glue)
 ## ----------------------------------------- ##
 
 # Directory helpers (ensure_dir)
-source(here('scripts', 'processing_functions', 'paths_and_directories.R'))
+source(here('R', 'functions', 'paths_and_directories.R'))
 
 ## ----------------------------------------- ##
 #           Directory Navigation ----

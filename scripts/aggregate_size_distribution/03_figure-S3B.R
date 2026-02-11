@@ -30,8 +30,8 @@ librarian::shelf(tinythemes, Cairo)
 ## ----------------------------------------- ##
 
 # Directory helpers (ensure_dir)
-source(here('scripts', 'processing_functions', 'paths_and_directories.R'))
-source(here('scripts', 'processing_functions', 'fonts.R'))
+source(here('R', 'functions', 'paths_and_directories.R'))
+source(here('R', 'functions', 'fonts.R'))
 
 ## ----------------------------------------- ##
 #          Directory Creation ----
