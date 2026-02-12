@@ -18,6 +18,13 @@ plots/**
 statistics/**
 
 # ----------------------------
+# renv - local library/caches (do not track)
+# ----------------------------
+renv/library/
+renv/staging/
+renv/local/
+
+# ----------------------------
 # R / RStudio / OS clutter
 # ----------------------------
 .Rhistory
